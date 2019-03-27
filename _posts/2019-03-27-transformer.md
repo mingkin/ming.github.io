@@ -22,4 +22,5 @@ Transformer是谷歌在2017年做机器翻译任务的**“Attention is all you 
 #### 参考
 
 [放弃幻想，全面拥抱Transformer：自然语言处理三大特征抽取器（CNN/RNN/TF）比较](https://zhuanlan.zhihu.com/p/54743941)
+
 [从Seq2seq到Attention模型到Self Attention（二）](https://wallstreetcn.com/articles/3417279)
