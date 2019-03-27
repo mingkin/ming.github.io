@@ -19,13 +19,15 @@ Transformer是谷歌在2017年做机器翻译任务的**“Attention is all you 
 对于Transformer结构来说，主要就是Encoder和Dcoder结构组成，每一个Encoder是由self-attention+Feed Forward NN构成，如下图所示，所以我们首先要理解self-attention。
 ![Image Title](https://i.loli.net/2019/03/27/5c9b3e1be49ac.png)
 ![Image Title](https://i.loli.net/2019/03/27/5c9b3e1be641e.jpg)
+
 每一个Decoder是由Self-Attention+Encoder-Decoder Attention+Feed Forward NN构成，结构如下图所示：
 ![Image Title](https://i.loli.net/2019/03/27/5c9b3ee32fe81.png)
 
 #### Encoder结构详解
 一般的博客都是先将重要的Self-Attention讲起，但是我觉得还是应该从输入讲起，一步一步循序渐进就好，首先讲一下Transformer的输入，其输入是词向量的嵌入和位置编码向量的相加，这样就可以把位置信息考虑进去，论文中的位置嵌入公式是：
 ![Image Title](https://i.loli.net/2019/03/27/5c9b426ec0116.jpg)
-PE(pos, 2i)=sin(pos/10000^{2i/d_{model}})、PE(pos, 2i+1)=cos(pos/10000^{2i/d_{model}})来计算positional encoding，pos代表的是位置，i代表的是维度，偶数位置的文字会透过sin函数进行转换，奇数位置的文字则透过cos函数进行转换，藉由三角函数，可以发现positional encoding 是个有週期性的波长；举例来说，[pos+k]可以写成PE[pos]的线性转换，使得模型可以学到不同位置文字间的相对位置。
+
+pos代表的是位置，i代表的是维度，偶数位置的文字会透过sin函数进行转换，奇数位置的文字则透过cos函数进行转换，藉由三角函数，可以发现positional encoding 是个有週期性的波长；举例来说，[pos+k]可以写成PE[pos]的线性转换，使得模型可以学到不同位置文字间的相对位置。
 ![Image Title](https://i.loli.net/2019/03/27/5c9b4314074d9.jpg)
 
 代码为：
