@@ -4,11 +4,8 @@ var x = 90,
 var flagX = 0;
     flagY = 2;
 setInterval(function () {
-    /**
  navBg.style.background = "linear-gradient(" + x +
         "deg, #3AA17E 10%, #00537E " + y + "%)";
- */
-    navBg.style.background = "#FFFFFF";
     if (flagX == 0) {
         x++;
         if (x == 360) {
