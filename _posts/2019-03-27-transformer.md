@@ -66,11 +66,11 @@ Self-Attention步骤：
 *1 将输入词转变成词向量，即得到Embedding层；
 *2 每个词向量得到一个Query向量, Key 向量和 Value 向量（都一样）；
 
-![Image Title](https://i.loli.net/2019/03/28/5c9cc1fb5bf46.jpg）
+![Image Title](https://i.loli.net/2019/03/28/5c9cc1fb5bf46.jpg)
 
 *3 为每一个词向量计算一个 score：query.dot(k) ；我们需要计算句子中的每一个词对当前词的score。这个score决定对句子的其他部分注意力是多少，也就是如何用句子的其他部分类表征当前词。
 
-![Image Title](https://i.loli.net/2019/03/28/5c9cc254f2406.jpg）
+![Image Title](https://i.loli.net/2019/03/28/5c9cc254f2406.jpg)
 
 在NLP的领域中，Key, Value通常就是指向同一个文字隐向量(word embedding vector)，可以参考key、value的起源论文 Key-Value Memory Networks for Directly Reading Documents。
 
@@ -87,11 +87,11 @@ Self-Attention步骤：
 
 下面讲一下Mutil-Head，如果我们只计算一个attention，很难捕捉输入句中所有空间的讯息，为了优化模型，论文当中提出了一个新颖的做法：Multi-head attention，概念是不要只用d_{model}维度的key, value, query们做单一个attention，而是把key, value, query们线性投射到不同空间h次，分别变成维度d_{q}, d_{k} 和 d_{v}，再各自做attention，其中，d_{k}=d_{v}=d_{model}/h=64，概念就是投射到h个head上。
 
-![Image Title](https://i.loli.net/2019/03/28/5c9cc3d17f03c.jpg）
+![Image Title](https://i.loli.net/2019/03/28/5c9cc3d17f03c.jpg)
 
 ”Transformer”用了8个attention head，所以我们会产生8组encoder/decoder，每一组都代表将输入文字的隐向量投射到不同空间，如果我们重复计算刚刚所讲的self-attention，我们就会得到8个不同的矩阵Z，可是呢，feed-forward layer期望的是一个矩阵而非8个，所以我们要把这8个矩阵拼接在一起，然后乘上一个权重矩阵，还原成一个矩阵Z。
 
-![Image Title](https://i.loli.net/2019/03/28/5c9cc41425a25.jpg）
+![Image Title](https://i.loli.net/2019/03/28/5c9cc41425a25.jpg)
 
 代码为：
 ```
@@ -189,13 +189,13 @@ Multi-Head Attention的优点：
 
 构成Transformer的Encoder除了上述部分还有残差网络和一层归一化，如下图：
 
-![Image Title](https://i.loli.net/2019/03/28/5c9cc5b98589f.jpg）
+![Image Title](https://i.loli.net/2019/03/28/5c9cc5b98589f.jpg)
 
 Residual connection 就是构建一种新的残差结构，将输出改写成和输入的残差，使得模型在训练时，微小的变化可以被注意到，这种架构很常用在电脑视觉(computer vision)，有兴趣可以参考神人Kaiming He的Deep Residual Learning for Image Recognition。
 
 Layer normalization则是在深度学习领域中，其中一种正规化方法，最常和batch normalization进行比较，layer normalization的优点在於它是独立计算的，也就是针对单一样本进行正规化，batch normalization则是针对各维度，因此和batch size有所关联，可以参考layer normalization。
 
-![Image Title](https://i.loli.net/2019/03/28/5c9cc68d351d8.jpg）
+![Image Title](https://i.loli.net/2019/03/28/5c9cc68d351d8.jpg)
 
 其代码为：
 ```
@@ -250,11 +250,11 @@ class EncoderLayer():
 ```
 
 Encoder讲完后，接下来讲一下Decoder的结构。
-![Image Title](https://i.loli.net/2019/03/28/5c9cc89f33bf5.jpg）
+![Image Title](https://i.loli.net/2019/03/28/5c9cc89f33bf5.jpg)
 
 Decoder的运作模式和Encoder大同小异，也都是经过residual connections再到layer normalization。Encoder中的self attention在计算时，key, value, query都是来自encoder前一层的输出，Decoder亦然。不一样的是，为了避免在解码的时候，还在翻译前半段时，就突然翻译到后半段的句子，会在计算self-attention的softmax之前先mask掉未来的位置(设定成-∞)。这个步骤确保在预测位置i的时候只能根据i之前位置的输出，其实这个是对Encoder-Decoder attention 的特性而做的配套措施，因为Encoder-Decoder attention可以看到encoder的整个句子，“Encoder-Decoder Attention”和Encoder/Decoder self attention不一样，它的Query来自于decoder self-attention，而Key、Value则是encoder的output。
 
-![Image Title](https://i.loli.net/2019/03/28/5c9cc9ff268b1.jpg）
+![Image Title](https://i.loli.net/2019/03/28/5c9cc9ff268b1.jpg)
 
 其代码为：
 ```
@@ -274,7 +274,7 @@ class DecoderLayer():
 其整体的运行方式为：从输入文字的序列给Encoder开始，Encoder的output变成attention vectors的Key、Value，然后传送至encoder-decoder attention layer，让Decoder将注意力放在输入文字序列的某个位置进行解码。
 最后的 Linear and Softmax Layer，Decoder最后会产生一个向量，传到最后一层linear layer后做softmax。Linear layer只是单纯的全连接层网络，并产生每个文字对应的分数，softmax layer会将分数转成机率值，最高机率的值就是在这个时间顺序时所要產生的文字。
 
-![Image Title](https://i.loli.net/2019/03/28/5c9ccbfa34b15.jpg）
+![Image Title](https://i.loli.net/2019/03/28/5c9ccbfa34b15.jpg)
 
 其代码为：
 
