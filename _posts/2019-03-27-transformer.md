@@ -78,6 +78,7 @@ Self-Attention步骤：
 ![Image Title](https://i.loli.net/2019/03/28/5c9cbf05e5d9f.jpg)
 
 将我们的词向量矩阵X 和权重矩阵W_Q,W_K,W_VW 相乘，即可得到Query 、Key 、Value 向量。
+
 ![Image Title](https://i.loli.net/2019/03/28/5c9cbf4ee8418.jpg)
 
 接下来这张图可以清晰的说明白Query 、Key 、Value Value三个向量的关系。”The transformer”除以\sqrt{d_k}，目的是避免内积过大时，softmax得出的结果非0即1。
@@ -89,6 +90,7 @@ Self-Attention步骤：
 ![Image Title](https://i.loli.net/2019/03/28/5c9cc3d17f03c.jpg）
 
 ”Transformer”用了8个attention head，所以我们会产生8组encoder/decoder，每一组都代表将输入文字的隐向量投射到不同空间，如果我们重复计算刚刚所讲的self-attention，我们就会得到8个不同的矩阵Z，可是呢，feed-forward layer期望的是一个矩阵而非8个，所以我们要把这8个矩阵拼接在一起，然后乘上一个权重矩阵，还原成一个矩阵Z。
+
 ![Image Title](https://i.loli.net/2019/03/28/5c9cc41425a25.jpg）
 
 代码为：
