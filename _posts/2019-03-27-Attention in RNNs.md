@@ -7,7 +7,7 @@ excerpt: 关于 Attention in RNNs 机制图解
 ---
 #### 文章来源
 
-由于文章的链接打不开，就在爱可可老师的微博下载了pdf版本，但出于对作者的敬意还是贴出了网址https://medium.com/datadriveninvestor/attention-in-rnns-321fbcd64f05
+网址https://medium.com/datadriveninvestor/attention-in-rnns-321fbcd64f05
 
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7712b86f5.png)
 
@@ -22,8 +22,9 @@ Attention机制如下：
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7afce9fbc.png)
 
 RNN的Attention如下：
-
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7afd03e84.png)
+
+![Image Title](https://i.loli.net/2019/03/29/5c9d7afd0e0ae.png)
 
 下面是分解讲解the attention weights and context vectors：
 
@@ -36,22 +37,21 @@ RNN的Attention如下：
 
 在接下来的时间步长中，注意机制输入序列[s1, h1]， [s1, h2]， [s1, h3]， [s1, h4]。
 
-
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b7235e.png)
 
 剩下的与前面一样：
-
-![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b70034.png)
 在下一步，注意机制有一个输入序列[s2, h1]， [s2, h2]， [s2, h3]， [s2, h4]。
+
+![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b72a8f.png)
 
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b71126.png)
 
+注意机制有一个输入序列[s3, h1], [s3, h2], [s3, h3], [s3, h4]。
+
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b717d2.png)
 
+![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b70034.png)
 
-
-![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b72a8f.png)
-![Image Title](https://i.loli.net/2019/03/29/5c9d7afd0e0ae.png)
 
 
 
