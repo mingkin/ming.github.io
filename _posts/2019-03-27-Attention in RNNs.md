@@ -28,21 +28,25 @@ RNN的Attention如下：
 下面是分解讲解the attention weights and context vectors：
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7afd0d794.png)
 
-第一步是由编码器计算向量h1、h2、h3、h4。这些向量都作为attention机制的输入向量。在这里，解码器首先通过输入其初始状态向量s0进行处理，我们得到了第一个注意输入序列[s0, h1]， [s0, h2]， [s0, h3]， [s0, h4]。注意机制计算权重α11第一组的关注,α12,α13,α14启用第一个上下文向量的计算c1。解码器现在使用[s0,c1]并计算第一个RNN输出y1。
+第一步是由编码器计算向量h1、h2、h3、h4。这些向量都作为attention机制的输入向量。在这里，解码器首先通过输入其初始状态向量s0进行处理，我们得到了第一个注意力输入序列[s0, h1]， [s0, h2]， [s0, h3]， [s0, h4]。注意机制计算权重α11第一组的权重值,α12,α13,α14启用第一个上下文向量的计算c1。解码器现在使用[s0,c1]并计算第一个RNN输出y1。
 
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7afd0cd2d.png)
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b708aa.png)
 
-在接下来的时间步长中，注意机制输入序列[s1, h1]， [s1, h2]， [s1, h3]， [s1, h4]。![Image Title](https://i.loli.net/2019/03/29/5c9d7afd0e0ae.png)
+在接下来的时间步长中，注意机制输入序列[s1, h1]， [s1, h2]， [s1, h3]， [s1, h4]。
+
+![Image Title](https://i.loli.net/2019/03/29/5c9d7afd0e0ae.png)
+![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b7235e.png)
+剩下的与前面一样：
 
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b70034.png)
-
-
+在下一步，注意机制有一个输入序列[s2, h1]， [s2, h2]， [s2, h3]， [s2, h4]。
 
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b71126.png)
 
+
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b717d2.png)
 
-![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b7235e.png)
+
 
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b72a8f.png)
