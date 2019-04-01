@@ -42,10 +42,12 @@ RNN的Attention如下：
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b70034.png)
 在下一步，注意机制有一个输入序列[s2, h1]， [s2, h2]， [s2, h3]， [s2, h4]。
 
+![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b717d2.png)
+
 ![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b71126.png)
 
 
-![Image Title](https://i.loli.net/2019/03/29/5c9d7b0b717d2.png)
+
 
 
 
