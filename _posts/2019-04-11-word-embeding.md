@@ -1,7 +1,7 @@
 ---
 title: word_embeding
 layout: post
-categories:NLP
+categories: NLP
 tags: NLP
 excerpt: 词向量表示方法
 ---
